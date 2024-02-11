@@ -1,14 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-import Notiflix from 'notiflix';
 
-axios.defaults.baseURL = 'https://65a701c794c2c5762da62551.mockapi.io';
+import Notiflix from 'notiflix';
+import { authInstance } from '../../redux/login/login.reducer';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
   async (_, thunkApi) => {
     try {
-      const data = await axios.get('/contacts');
+      const { data } = await authInstance.get('/contacts');
+      console.log(data);
       return data;
     } catch (err) {
       return thunkApi.rejectWithValue(err.message);
@@ -20,10 +20,7 @@ export const addContact = createAsyncThunk(
   'contacts/addContact',
   async (contactData, thunkApi) => {
     try {
-      const data = await axios.post('/contacts/', {
-        name: contactData.name,
-        phone: contactData.phone,
-      });
+      const { data } = await authInstance.post('/contacts', contactData);
       Notiflix.Notify.success('Contact add successfully!');
       return data;
     } catch (err) {
@@ -37,7 +34,7 @@ export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (idContact, thunkApi) => {
     try {
-      const data = await axios.delete(`/contacts/${idContact}`);
+      const data = await authInstance.delete(`/contacts/${idContact}`);
       Notiflix.Notify.success('Contact deleted successfully!');
       return data;
     } catch (err) {
@@ -76,7 +73,7 @@ const contactsSlice = createSlice({
       })
       .addCase(fetchContacts.fulfilled, (state, { payload }) => {
         state.contacts.isLoading = false;
-        state.contacts.items = payload.data;
+        state.contacts.items = payload;
       })
       .addCase(fetchContacts.rejected, (state, { payload }) => {
         state.contacts.isLoading = false;
@@ -86,7 +83,7 @@ const contactsSlice = createSlice({
         state.contacts.error = null;
       })
       .addCase(addContact.fulfilled, (state, { payload }) => {
-        state.contacts.items = [...state.contacts.items, payload.data];
+        state.contacts.items = [...state.contacts.items, payload];
       })
       .addCase(addContact.rejected, (state, { payload }) => {
         state.contacts.error = payload;

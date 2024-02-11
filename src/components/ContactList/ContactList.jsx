@@ -25,6 +25,7 @@ export const ContactList = () => {
     return contacts.filter(fil =>
       fil.name.toLowerCase().includes(filter.toLowerCase())
     );
+    // return 'andrii';
   };
 
   const data = filterApp();
@@ -50,7 +51,7 @@ export const ContactList = () => {
         )}
         {data.map(con => (
           <li key={con.id}>
-            {con.name}: {con.phone}
+            {con.name}: {con.number}
             <button onClick={evt => deleteItem(con.id)} type="button">
               delete
             </button>

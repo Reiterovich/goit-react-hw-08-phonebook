@@ -15,14 +15,14 @@ export const Form = () => {
 
     const contactData = {
       name: name,
-      phone: number,
+      number: number,
     };
 
     if (
       contacts.some(
         elm =>
           elm.name.toLowerCase() === contactData.name.toLowerCase() ||
-          elm.phone === contactData.phone
+          elm.number === contactData.number
       )
     ) {
       Notiflix.Notify.failure(
