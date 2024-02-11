@@ -9,6 +9,9 @@ const Navigation = () => {
   return (
     <div>
       <ul>
+        <li>
+          <NavLink to="/">Home Page</NavLink>
+        </li>
         {isLoggedIn ? (
           <>
             <li>

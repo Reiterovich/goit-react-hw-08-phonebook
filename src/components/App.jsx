@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { apiRefreshUser } from '../redux/login/login.reducer';
 import RestrictedRoute from './RestrictedRoute/RestrictedRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
+import HomePage from 'pages/homePage';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -29,8 +30,8 @@ export const App = () => {
         {isLoggedIn && <UserMenu />}
       </header>
 
-      {/* <HomePage /> */}
       <Routes>
+        <Route path="/" element={<HomePage />} />
         <Route
           path="/contacts"
           element={
