@@ -16,6 +16,7 @@ export const Filter = () => {
 
   return (
     <>
+      <h2>Contacts</h2>
       <p>Find contacts by neme</p>
       <input name="filter" type="text" onChange={handleInputChange} />
     </>

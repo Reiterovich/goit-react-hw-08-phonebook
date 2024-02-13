@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { addContact } from '../../redux/contact/contact.reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from '../../redux/contact/selector';
+import { ButtonAdd, ContainerAddContact } from './Form.styled.components';
 
 export const Form = () => {
   const [name, setName] = useState('');
@@ -54,9 +55,10 @@ export const Form = () => {
   };
 
   return (
-    <>
+    <ContainerAddContact>
       <form onSubmit={hendleSubmit}>
-        <h2>Name</h2>
+        <h2>Add contact</h2>
+        <h3>Name</h3>
         <input
           type="text"
           name="name"
@@ -65,7 +67,7 @@ export const Form = () => {
           required
         />
         <br />
-        <h2>Number</h2>
+        <h3>Number</h3>
         <input
           onChange={handleInputChange}
           type="tel"
@@ -74,10 +76,9 @@ export const Form = () => {
           required
         />
         <br />
-        <button type="submit">Add contact</button>
+        <ButtonAdd type="submit">Add contact</ButtonAdd>
       </form>
       <br />
-      <h2>Contacts</h2>
-    </>
+    </ContainerAddContact>
   );
 };

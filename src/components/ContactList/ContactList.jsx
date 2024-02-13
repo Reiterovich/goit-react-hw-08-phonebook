@@ -10,6 +10,12 @@ import {
   selectIsLoading,
 } from '../../redux/contact/selector';
 import { useEffect } from 'react';
+import {
+  ContactButton,
+  ContactConteiner,
+  LiContact,
+  ListUlContact,
+} from './ContactList.styled.components';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
@@ -35,8 +41,8 @@ export const ContactList = () => {
   };
 
   return (
-    <div>
-      <ul>
+    <ContactConteiner>
+      <ListUlContact>
         {isLoading && (
           <ThreeDots
             visible={true}
@@ -50,14 +56,14 @@ export const ContactList = () => {
           />
         )}
         {data.map(con => (
-          <li key={con.id}>
+          <LiContact key={con.id}>
             {con.name}: {con.number}
-            <button onClick={evt => deleteItem(con.id)} type="button">
+            <ContactButton onClick={evt => deleteItem(con.id)} type="button">
               delete
-            </button>
-          </li>
+            </ContactButton>
+          </LiContact>
         ))}
-      </ul>
-    </div>
+      </ListUlContact>
+    </ContactConteiner>
   );
 };

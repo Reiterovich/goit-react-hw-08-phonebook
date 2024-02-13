@@ -2,13 +2,14 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { selectAuthIsLoggenIn } from '../../redux/login/selector';
+import { ContainerNav, Listlink } from './Navigation.styled.components';
 
 const Navigation = () => {
   const isLoggedIn = useSelector(selectAuthIsLoggenIn);
 
   return (
-    <div>
-      <ul>
+    <ContainerNav>
+      <Listlink>
         <li>
           <NavLink to="/">Home Page</NavLink>
         </li>
@@ -28,8 +29,8 @@ const Navigation = () => {
             </li>
           </>
         )}
-      </ul>
-    </div>
+      </Listlink>
+    </ContainerNav>
   );
 };
 

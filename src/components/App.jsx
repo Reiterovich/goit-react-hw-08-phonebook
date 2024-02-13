@@ -11,6 +11,7 @@ import { apiRefreshUser } from '../redux/login/login.reducer';
 import RestrictedRoute from './RestrictedRoute/RestrictedRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import HomePage from 'pages/homePage';
+import { Container, Navbar, Title } from './App.styled.components';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -23,40 +24,43 @@ export const App = () => {
 
   return (
     <>
-      <h1>Phonebook</h1>
+      <Title>Phonebook - your personal phone book.</Title>
 
       <header>
-        <Navigation />
-        {isLoggedIn && <UserMenu />}
+        <Navbar>
+          <Navigation />
+          {isLoggedIn && <UserMenu />}
+        </Navbar>
       </header>
-
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route
-          path="/contacts"
-          element={
-            <PrivateRoute>
-              <ContactsPage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <RestrictedRoute>
-              <LoginPage />
-            </RestrictedRoute>
-          }
-        />
-        <Route
-          path="/registration"
-          element={
-            <RestrictedRoute>
-              <RegisterPage />
-            </RestrictedRoute>
-          }
-        />
-      </Routes>
+      <Container>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute>
+                <ContactsPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute>
+                <LoginPage />
+              </RestrictedRoute>
+            }
+          />
+          <Route
+            path="/registration"
+            element={
+              <RestrictedRoute>
+                <RegisterPage />
+              </RestrictedRoute>
+            }
+          />
+        </Routes>
+      </Container>
     </>
   );
 };

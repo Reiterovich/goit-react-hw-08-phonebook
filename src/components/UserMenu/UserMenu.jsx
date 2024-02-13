@@ -5,6 +5,7 @@ import {
   selectAuthIsLoading,
   selectAuthUserData,
 } from '../../redux/login/selector';
+import { TitleUserEmail, UserContainer } from './UserMenu.styled.components';
 
 const UserMenu = () => {
   const dispatch = useDispatch();
@@ -16,12 +17,12 @@ const UserMenu = () => {
   const userEmail = userData?.email ?? "Could't get user email!";
 
   return (
-    <div>
-      <p>{userEmail}</p>
+    <UserContainer>
+      <TitleUserEmail>{userEmail}</TitleUserEmail>
       <button disabled={isLoading} onClick={hendleLogout} type="button">
         Logout
       </button>
-    </div>
+    </UserContainer>
   );
 };
 
